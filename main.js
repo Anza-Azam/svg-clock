@@ -1,6 +1,6 @@
 import cartesianGrid from './cartesianGrid.js'
 import createSVGElement from './createSVGElement.js'
-import createMarkers from './clockFace.js'//lines for mins and hours
+import createMarkers from './clockFace.js' // lines for mins and hours
 
 const clock = document.querySelector(".clock")
 const clockFace = createSVGElement({
@@ -12,9 +12,30 @@ const clockFace = createSVGElement({
 })
 
 
+function drawDesign() {
+    const clockDesign = createSVGElement({
+        type: "svg",
+        attributes: {
+            class: "design"
+        }
+    })
+    const backgroundClock = createSVGElement({
+        type: "text",
+        attributes: {
+            x: -100,
+            y: 0,
+            fill: 'yellow'
+        }
+    })
+    backgroundClock.textContent = "CODE YOUR FUTURE"
+    clockDesign.appendChild(backgroundClock)
 
+    return clockDesign;
+
+
+}
+const design = drawDesign();
 const markers = createMarkers()
-
 
 
 const handsSVG = drawHands();
@@ -22,13 +43,16 @@ const handsSVG = drawHands();
 requestAnimationFrame(runClock);
 
 
-let secDeg=0;
-function drawHands(){
-    const handsSVG = createSVGElement({type: "svg", attributes: {
-        id: "handsSVG"
-    }})
+let secDeg = 0;
+function drawHands() {
+    const handsSVG = createSVGElement({
+        type: "svg",
+        attributes: {
+            id: "handsSVG"
+        }
+    })
 
-    const sec =createSVGElement({
+    const sec = createSVGElement({
         type: "line",
         attributes: {
             id: "sec",
@@ -37,58 +61,55 @@ function drawHands(){
             x2: 0,
             y2: -140,
             stroke: '#fff',
-            "stroke-width":"3"
+            "stroke-width": "3"
         }
     })
-    
-   
 
 
-    const min =createSVGElement({
-            type: "line",
-            attributes: {
-                    id: "min",
-                    x1: 0,
-                    y1: 0,
-                    x2: 0,
-                    y2: -120,
-                    stroke: '#fff',
-                    "stroke-width":"3"
-                }
-            })
-  
+    const min = createSVGElement({
+        type: "line",
+        attributes: {
+            id: "min",
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: -120,
+            stroke: '#fff',
+            "stroke-width": "3"
+        }
+    })
 
-    const hour =createSVGElement({
-            type: "line",
-            attributes: {
-                    id: "hour",
-                    x1: 0,
-                    y1: 0,
-                    x2: 0,
-                    y2: -100,
-                    stroke: '#fff',
-                    "stroke-width":"3"
-                }
-            })
-    
+
+    const hour = createSVGElement({
+        type: "line",
+        attributes: {
+            id: "hour",
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: -100,
+            stroke: '#fff',
+            "stroke-width": "3"
+        }
+    })
+
     handsSVG.appendChild(sec);
     handsSVG.appendChild(min);
     handsSVG.appendChild(hour);
     return handsSVG;
 }
-function runClock(){
+function runClock() {
     const date = new Date();
-    const hourdeg = date.getHours()*30
-    const minutes = date.getMinutes()*6
-    const second = date.getSeconds()*6;
+    const hourdeg = date.getHours() * 30
+    const minutes = date.getMinutes() * 6
+    const second = date.getSeconds() * 6;
 
-    
-    
-    secDeg = (secDeg+6);
+
+    secDeg = (secDeg + 6);
     const sec = document.getElementById('sec');
     const min = document.getElementById('min');
     const hours = document.getElementById('hour');
- 
+
     sec.setAttributeNS(null, "transform", `rotate(${second})`);
     min.setAttributeNS(null, "transform", `rotate(${minutes})`);
     hours.setAttributeNS(null, "transform", `rotate(${hourdeg})`);
@@ -96,13 +117,9 @@ function runClock(){
 }
 
 
-
-
-
-
-
 clock.appendChild(clockFace)
+clock.appendChild(design)
 clock.appendChild(markers)
 clock.appendChild(handsSVG)
 clock.appendChild(cartesianGrid)
-runClock();
+// runClock();
