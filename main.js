@@ -1,7 +1,8 @@
 import cartesianGrid from './cartesianGrid.js'
 import createSVGElement from './createSVGElement.js'
-import createMarkers from './clockFace.js' // lines for mins and hours
-
+import createMarkers from './clockFace.js'
+ // lines for mins and hours
+import drawDesign from './drawDesign.js'
 const clock = document.querySelector(".clock")
 const clockFace = createSVGElement({
     attributes: {
@@ -12,28 +13,32 @@ const clockFace = createSVGElement({
 })
 
 
-function drawDesign() {
-    const clockDesign = createSVGElement({
-        type: "svg",
-        attributes: {
-            class: "design"
-        }
-    })
-    const backgroundClock = createSVGElement({
-        type: "text",
-        attributes: {
-            x: -100,
-            y: 0,
-            fill: 'yellow'
-        }
-    })
-    backgroundClock.textContent = "CODE YOUR FUTURE"
-    clockDesign.appendChild(backgroundClock)
+// function drawDesign() {
+//     // const clockDesign = createSVGElement({
+//     //     type: "svg",
+//     //     attributes: {
+//     //         class: "design"
+//     //     }
+//     // })
+//     const backgroundClock = createSVGElement({
+//         type: "text",
+//         attributes: {
+//             x: -20,
+//             y: 0,
+//             fill: 'yellow'
+//         }
+//     })
+//    let date = new Date();
+//     let hg = date.getHours();
+//     console.log(hg,'<<<<<<<<<<<<<<<<<<<<<<<');
+//     backgroundClock.textContent = "CODE YOUR FUTURE"
+//     //clockDesign.appendChild(backgroundClock)
+// if (hg>12){backgroundClock.textContent = "DAY"} else
+//  {backgroundClock.textContent = "NIGHT"}
+//     return backgroundClock;
 
-    return clockDesign;
 
-
-}
+// }
 const design = drawDesign();
 const markers = createMarkers()
 
